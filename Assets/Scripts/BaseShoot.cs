@@ -8,8 +8,9 @@ namespace Shipov_Asteroids
         private readonly Transform _barrel;
         private readonly float _force;
 
-        public BaseShoot(Rigidbody2D bullet, Transform barrel, float _force)
+        public BaseShoot(Rigidbody2D bullet, Transform barrel, float force)
         {
+            _force = force;
             _bullet = bullet;
             _barrel = barrel;
         }
@@ -17,7 +18,7 @@ namespace Shipov_Asteroids
         public void Shoot()
         {
             var temAmmunition = Object.Instantiate(_bullet, _barrel.position, _barrel.rotation);
-            temAmmunition.AddForce(_barrel.right * _force);
+            temAmmunition.AddForce(_barrel.up * _force);
         }
     }
 }

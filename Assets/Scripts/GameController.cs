@@ -16,15 +16,21 @@ namespace Shipov_Asteroids
         private InputController _inputController;
         private Camera _camera;
 
+        IEnemyFactory asteroidFactory;
+
+
         private void Start()
         {
+            asteroidFactory = new AsteroidFactory();
+            asteroidFactory.Create(new Health(100.0f, 100.0f));
+            BaseEnemy.CreateAsteroid(new Health(100.0f, 100.0f));
             _playerPrefab = Instantiate(_playerPrefab);
             _camera = _playerPrefab.GetComponentInChildren<Camera>();
             _barrel = _playerPrefab.GetComponentInChildren<Transform>().GetChild(0); // На данный момент пришлось захардкодить
             var _moveTransform = new AccelerationMovement(_playerPrefab.transform, _playerSO.speed, _playerSO.acceleration);
             var _rotation = new ShipRotation(_playerPrefab.transform);
             var _shoot = new BaseShoot(_bullet, _barrel, _playerSO.force);
-            _ship = new Ship(_moveTransform, _rotation, _shoot);
+            _ship = new Ship(_moveTransform, _rotation, _shoot, _playerSO);
             _updatingObjects = new UpdatingObjects();
             _inputController = new InputController(_playerPrefab, _camera, _ship);
 
