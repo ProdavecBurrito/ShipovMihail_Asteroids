@@ -21,9 +21,11 @@ namespace Shipov_Asteroids
 
         private void Start()
         {
-            asteroidFactory = new AsteroidFactory();
-            asteroidFactory.Create(new Health(100.0f, 100.0f));
-            BaseEnemy.CreateAsteroid(new Health(100.0f, 100.0f));
+            EnemyPool enemyPool = new EnemyPool(5);
+            var enemy = enemyPool.GetEnemy("Asteroid");
+            enemy.transform.position = Vector3.one;
+            enemy.gameObject.SetActive(true);
+
             _playerPrefab = Instantiate(_playerPrefab);
             _camera = _playerPrefab.GetComponentInChildren<Camera>();
             _barrel = _playerPrefab.GetComponentInChildren<Transform>().GetChild(0); // На данный момент пришлось захардкодить
@@ -34,6 +36,7 @@ namespace Shipov_Asteroids
             _updatingObjects = new UpdatingObjects();
             _inputController = new InputController(_playerPrefab, _camera, _ship);
 
+            _updatingObjects.AddUpdateObject(enemy as IUpdate);
             _updatingObjects.AddUpdateObject(_inputController);
         }
 

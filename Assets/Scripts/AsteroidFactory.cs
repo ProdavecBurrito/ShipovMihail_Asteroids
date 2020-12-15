@@ -8,8 +8,6 @@ namespace Shipov_Asteroids
         {
             var enemy = Object.Instantiate(Resources.Load<Asteroid>("Enemy/Asteroid"));
 
-            enemy.InjectHealth(hp);
-
             return enemy;
         }
     }
