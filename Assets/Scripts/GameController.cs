@@ -26,6 +26,11 @@ namespace Shipov_Asteroids
             enemy.transform.position = Vector3.one;
             enemy.gameObject.SetActive(true);
 
+            if(enemy is Asteroid asteroid)
+            {
+                asteroid.InitAsteroid();
+            }
+
             _playerPrefab = Instantiate(_playerPrefab);
             _camera = _playerPrefab.GetComponentInChildren<Camera>();
             _barrel = _playerPrefab.GetComponentInChildren<Transform>().GetChild(0); // На данный момент пришлось захардкодить
