@@ -1,6 +1,6 @@
 ﻿namespace Shipov_Asteroids
 {
-    public interface IPoolService<T> 
+    public interface IPoolService<T>
     {
         T GetPool();
     }
