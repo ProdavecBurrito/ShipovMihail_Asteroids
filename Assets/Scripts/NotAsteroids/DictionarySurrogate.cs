@@ -1,12 +1,22 @@
-﻿using System.Collections.Generic;
-using System.Runtime.Serialization;
+﻿using UnityEditor;
+using System.Collections.Generic;
 using UnityEngine;
 
-public class DictionarySurrogate 
+namespace Shipov_NotAsteroidHW
 {
+    public class DictionarySurrogate : EditorWindow
+    {
+        private DictionaryToSerialize toSerialize;
 
-    
-    private Dictionary<int, GameObject> _dictionary = new Dictionary<int, GameObject>();
+        private void OnGUI()
+        {
+            GUILayout.Label("Словарь", EditorStyles.boldLabel);
 
-    public Dictionary<int, GameObject> ShowDictionary => _dictionary;
+            foreach (KeyValuePair<int, string> item in toSerialize.GetDictionary)
+            {
+                EditorGUILayout.IntField(item.Key);
+                EditorGUILayout.TextArea(item.Value);
+            }
+        }
+    }
 }
