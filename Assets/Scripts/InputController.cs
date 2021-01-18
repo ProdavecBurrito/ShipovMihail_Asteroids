@@ -2,7 +2,6 @@
 
 namespace Shipov_Asteroids
 {
-    // Мне кажется, что у этого класса слишком много ответственности. Можно комментарий по этому поводу?
     internal sealed class InputController : IUpdate
     {
         private Ship _ship;
