@@ -153,6 +153,8 @@ MonoBehaviour:
   _playerSO: {fileID: 11400000, guid: 0d03ceed0b3e6c84381f479dd6cc14f0, type: 2}
   _playerPrefab: {fileID: 2902738000857002374, guid: 3096f1923a4f5a54fb58bfd57116daf8,
     type: 3}
+  _scoreCanvas: {fileID: 7308218571429645320, guid: e5bb95b0bd4c1a54987740f682e0eef2,
+    type: 3}
   _bullet: {fileID: 4933975063922895782, guid: a745dd606b94f0e4ea1288097c3c31e1, type: 3}
   _barrel: {fileID: 0}
 --- !u!4 &575165498

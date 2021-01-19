@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Shipov_Asteroids
 {
@@ -8,6 +9,7 @@ namespace Shipov_Asteroids
         [SerializeField] private List<IChainMember> _chainMembers;
         [SerializeField] private PlayerSO _playerSO;
         [SerializeField] private GameObject _playerPrefab;
+        [SerializeField] private Canvas _scoreCanvas;
         [SerializeField] private Rigidbody2D _bullet;
         [SerializeField] private Transform _barrel;
         private Ship _ship;
@@ -16,6 +18,7 @@ namespace Shipov_Asteroids
         private UpdatingObjects _updatingObjects;
         private InputController _inputController;
         private Camera _camera;
+        private ScoreUI _scoreText;
 
         private IEnemyFactory asteroidFactory;
 
@@ -34,6 +37,8 @@ namespace Shipov_Asteroids
                 asteroid.InitAsteroid();
             }
 
+            _scoreCanvas = Instantiate(_scoreCanvas);
+            _scoreText = new ScoreUI(_scoreCanvas);
             _playerPrefab = Instantiate(_playerPrefab);
             _camera = _playerPrefab.GetComponentInChildren<Camera>();
             _barrel = _playerPrefab.GetComponentInChildren<Transform>().GetChild(0);
@@ -42,7 +47,7 @@ namespace Shipov_Asteroids
             var _shoot = new BaseShoot(_bullet, _barrel, _playerSO.force);
             _ship = new Ship(_moveTransform, _rotation, _shoot, _playerSO);
             _updatingObjects = new UpdatingObjects();
-            _inputController = new InputController(_playerPrefab, _camera, _ship);
+            _inputController = new InputController(_playerPrefab, _camera, _ship, _scoreText);
 
             _updatingObjects.AddUpdateObject(enemy as IUpdate);
             _updatingObjects.AddUpdateObject(_inputController);
