@@ -14,6 +14,7 @@ namespace Shipov_Asteroids
         [SerializeField] private Transform _barrel;
         private Ship _ship;
 
+       // private ScoreInterpretator _scoreInterpretator;
         private IChainMember _chainMember;
         private UpdatingObjects _updatingObjects;
         private InputController _inputController;
@@ -25,6 +26,7 @@ namespace Shipov_Asteroids
 
         private void Start()
         {
+            //_scoreInterpretator = new ScoreInterpretator();
             _chainMembers = new List<IChainMember>();
 
             EnemyPool enemyPool = new EnemyPool(5);
@@ -38,7 +40,7 @@ namespace Shipov_Asteroids
             }
 
             _scoreCanvas = Instantiate(_scoreCanvas);
-            _scoreText = new ScoreUI(_scoreCanvas);
+            _scoreText = new ScoreUI(_scoreCanvas, new ScoreInterpretator());
             _playerPrefab = Instantiate(_playerPrefab);
             _camera = _playerPrefab.GetComponentInChildren<Camera>();
             _barrel = _playerPrefab.GetComponentInChildren<Transform>().GetChild(0);

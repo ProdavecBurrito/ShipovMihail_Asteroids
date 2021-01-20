@@ -6,6 +6,8 @@ namespace Shipov_Asteroids
 {
     internal sealed class InputController : IUpdate
     {
+        private const float SCORE_VALUE = 100000.0f;
+
         private Ship _ship;
         private GameObject _playerPrefab;
         private Camera _camera;
@@ -18,6 +20,7 @@ namespace Shipov_Asteroids
         private float _vertical;
         private float _horizontal;
 
+        private KeyCode _addScore = KeyCode.E;
         private KeyCode _doNothingKey = KeyCode.Q;
         private KeyCode _scoreKey = KeyCode.Tab;
         private KeyCode _shootKey = KeyCode.Mouse0;
@@ -40,6 +43,7 @@ namespace Shipov_Asteroids
             SpeedUP();
             DoNothing();
             ShowScore();
+            ChangeScore();
         }
 
         private void DoNothing()
@@ -87,6 +91,14 @@ namespace Shipov_Asteroids
             if (Input.GetKeyUp(_speedUpKey))
             {
                 _ship.RemoveAcceleration();
+            }
+        }
+
+        private void ChangeScore()
+        {
+            if (Input.GetKeyDown(_addScore))
+            {
+                _scoreText.AddScore(SCORE_VALUE);
             }
         }
     }
