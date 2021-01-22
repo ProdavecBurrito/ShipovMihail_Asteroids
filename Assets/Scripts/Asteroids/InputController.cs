@@ -75,7 +75,7 @@ namespace Shipov_Asteroids
             _vertical = Input.GetAxis("Vertical");
             _horizontal = Input.GetAxis("Horizontal");
 
-            _ship.Move(_vertical, _horizontal, Time.deltaTime);
+            _ship.Move(_vertical, _horizontal , Time.deltaTime);
 
             var direction = Input.mousePosition - _camera.WorldToScreenPoint(_playerPrefab.transform.position);
             _ship.Rotation(direction);

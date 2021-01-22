@@ -19,9 +19,9 @@ namespace Shipov_Asteroids
             _rotationRealization = rotation;
         }
 
-        public void Move(float horizontal, float vertical, float deltaTime)
+        public void Move(float vertical, float horizontal, float deltaTime)
         {
-            _movementRealization.Move(horizontal, vertical, deltaTime);
+            _movementRealization.Move(vertical, horizontal, deltaTime);
         }
 
         public void Rotation(Vector3 direction)

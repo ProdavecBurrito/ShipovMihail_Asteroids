@@ -37,9 +37,7 @@ namespace Shipov_Asteroids
         public static Asteroid CreateAsteroidEnemy(Health hp)
         {
             var enemy = Instantiate(Resources.Load<Asteroid>("Enemy/Asteroid"));
-
             enemy.Health = hp;
-
             return enemy;
         }
 

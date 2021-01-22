@@ -17,8 +17,8 @@ namespace Shipov_Asteroids
 
         public void Move(float vertical, float horizontal, float deltaTime)
         {
-            _movementVector.Set(horizontal * Speed * deltaTime, vertical * Speed * deltaTime, 0.0f);
-            _transform.localPosition += _movementVector;
+            _movementVector.Set(horizontal, vertical, 0.0f);
+            _transform.Translate(_movementVector * Speed * deltaTime, Space.Self);
         }
     }
 }

@@ -4,16 +4,16 @@ namespace Shipov_Asteroids
 {
     internal sealed class Asteroid : BaseEnemy, IAsteroidMove, IUpdate
     {
-        public float Speed { get; protected set; }
+        public float Speed { get; private set; }
         private Vector3 _direction;
         private Transform _transform;
         
         public void InitAsteroid()
         {
+            Speed = Random.Range(2f, 5f);
             _transform = gameObject.transform;
-            _direction.x = Random.Range(0.01f, 0.05f);
-            _direction.y = Random.Range(0.01f, 0.05f);
-            //Speed = speed;
+            _direction.x = Random.Range(-1.0f, 1.0f);
+            _direction.y = Random.Range(-1.0f, 1.0f);
         }
 
         public void UpdateTick()
@@ -23,8 +23,8 @@ namespace Shipov_Asteroids
 
         public void Move()
         {
-            _direction.Set(_direction.x, _direction.y, Time.deltaTime);
-            _transform.localPosition += _direction;
+            _direction.Set(_direction.x, _direction.y, 0.0f);
+            _transform.localPosition += _direction * Speed * Time.deltaTime;
         }
     }
 }

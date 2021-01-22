@@ -7,8 +7,6 @@ namespace Shipov_Asteroids
     {
         private float _number;
 
-        //private List<string> _words = new List<string>() { " K", " M" };
-
         public string ConvertValue(string value)
         {
             if (float.TryParse(value, out _number))
