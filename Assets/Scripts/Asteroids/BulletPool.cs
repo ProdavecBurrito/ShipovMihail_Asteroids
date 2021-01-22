@@ -26,13 +26,13 @@ namespace Shipov_Asteroids
                 }
             }
 
-            public BaseEnemy GetEnemy(string bulletType)
+            public BaseShoot GetBulleType(string bulletType)
             {
-                BaseEnemy result;
+                BaseShoot result;
                 switch (bulletType)
                 {
-                    case "Asteroid":
-                        result = GetAsteroid(GetListBullets(bulletType));
+                    case "Bullet":
+                        result = GetBullets(GetListBullets(bulletType));
                         break;
                     default:
                         throw new ArgumentOutOfRangeException(nameof(bulletType), bulletType, "Такого типа снарядов не существует");
@@ -53,24 +53,24 @@ namespace Shipov_Asteroids
                 }
             }
 
-            private BaseEnemy GetAsteroid(HashSet<BaseShoot> bullets)
+            private BaseShoot GetBullets(HashSet<BaseShoot> bullets)
             {
-                var enemy = bullets.FirstOrDefault(a => !a.gameObject.activeSelf);
+                var currentBullet = bullets.FirstOrDefault(a => !a.gameObject.activeSelf);
 
-                if (enemy == null)
+                if (currentBullet == null)
                 {
-                    var bullet = Resources.Load<BaseShoot>("Enemy/Asteroid");
+                    var bullet = Resources.Load<BaseShoot>("Bullet");
                     for (var i = 0; i < CapacityPool; i++)
                     {
                         var instantiate = Object.Instantiate(bullet);
                         ReturnToPool(instantiate.transform);
                         bullets.Add(instantiate);
                     }
-                    GetAsteroid(bullets);
+                    GetBullets(bullets);
                 }
 
-                enemy = bullets.FirstOrDefault(a => !a.gameObject.activeSelf);
-                return enemy;
+                currentBullet = bullets.FirstOrDefault(a => !a.gameObject.activeSelf);
+                return currentBullet;
             }
 
             private void ReturnToPool(Transform transform)
