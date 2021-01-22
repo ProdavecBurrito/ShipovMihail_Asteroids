@@ -5,26 +5,17 @@ namespace Shipov_Asteroids
 {
     public class ScoreInterpretator
     {
-        private string _value;
         private float _number;
 
-        private List<string> _words = new List<string>() { " K", " M" };
+        //private List<string> _words = new List<string>() { " K", " M" };
 
         public string ConvertValue(string value)
         {
-            for (int i = 0; i < _words.Count; i++)
-            {
-                if (value.Contains(_words[i]))
-                {
-                    var charIndex = _words[i].IndexOf(_words[i]);
-                    value.Remove(charIndex);
-                }
-            }
             if (float.TryParse(value, out _number))
             {
                return value = Interpretate(_number);
             }
-            return value;
+            throw new ArgumentException("Wrong value type");
         }
 
         private string Interpretate(float value)
