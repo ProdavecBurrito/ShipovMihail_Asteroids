@@ -8,7 +8,7 @@ namespace Shipov_Asteroids
 {
     public class BulletPool : MonoBehaviour
     {
-        internal sealed class EnemyPool
+        internal sealed class BulletPull
         {
             private readonly Dictionary<string, HashSet<BaseShoot>> _bulletPool;
             private readonly int _capacityPool;
@@ -16,7 +16,7 @@ namespace Shipov_Asteroids
 
             public int CapacityPool => _capacityPool;
 
-            public EnemyPool(int capacityPool)
+            public BulletPull(int capacityPool)
             {
                 _bulletPool = new Dictionary<string, HashSet<BaseShoot>>();
                 _capacityPool = capacityPool;

@@ -15,7 +15,6 @@ namespace Shipov_Asteroids
 
         private ICommand<ScoreUI> _tabKey;
         private ICommand<ScoreUI> _QKey;
-        private List<ICommand<Text>> oldCommands = new List<ICommand<Text>>();
 
         private float _vertical;
         private float _horizontal;

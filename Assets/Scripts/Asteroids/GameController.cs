@@ -69,8 +69,6 @@ namespace Shipov_Asteroids
 
         private void Update()
         {
-
-
             for (int i = 0; i < _updatingObjects.Count; i++)
             {
                 if (_updatingObjects == null)

@@ -2,18 +2,23 @@
 {
     internal sealed class Health
     {
-        public float GetMaxHP { get; }
-        public float GetCurrentHP { get; private set; }
+        public float MaxHP { get; }
+        public float CurrentHP { get; private set; }
 
         public Health(float maxHP, float currentHP)
         {
-            GetMaxHP = maxHP;
-            GetCurrentHP = currentHP;
+            MaxHP = maxHP;
+            CurrentHP = currentHP;
         }
 
         public void ChangeCurrentHealth(float hp)
         {
-            GetCurrentHP = hp;
+            CurrentHP = hp;
+        }
+
+        public void GetDamage(float damage)
+        {
+            CurrentHP -= damage;
         }
     }
 }
