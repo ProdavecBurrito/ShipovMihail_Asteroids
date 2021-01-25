@@ -16,8 +16,9 @@ namespace Shipov_Asteroids
 
         public float Speed { get; private set; }
 
-        public void InitAsteroid()
+        public void InitAsteroid(EnemyPool enemyPool)
         {
+            _enemyPool = enemyPool;
             Health = new Health(_health ,_health);
             Speed = Random.Range(MIN_SPEED, MAX_SPEED);
             _transform = gameObject.transform;
@@ -40,7 +41,6 @@ namespace Shipov_Asteroids
         {
             if (other.CompareTag("Player"))
             {
-                Debug.Log("Kek");
                 other.GetComponent<Ship>().GetDamage(HIT_DAMAGE);
                 Health.ChangeCurrentHealth(0);
                 _health = Health.CurrentHP;

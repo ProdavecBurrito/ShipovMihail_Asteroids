@@ -1,13 +1,16 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace Shipov_Asteroids
 {
     internal abstract class BaseEnemy : MonoBehaviour, IEnemy
     {
+        public event Action<string, string> OnDestroy = delegate (string name, string hp) {};
+
         public static IEnemyFactory Factory;
         private Transform _rotPool;
         private Health _health;
-        private EnemyPool _enemyPool;
+        protected EnemyPool _enemyPool;
 
         public Health Health
         {
@@ -15,6 +18,7 @@ namespace Shipov_Asteroids
             {
                 if (_health.CurrentHP <= 0.0f)
                 {
+                    OnDestroy?.Invoke(gameObject.name, _health.CurrentHP.ToString());
                     _enemyPool.ReturnToPool(transform);
                 }
                 return _health;

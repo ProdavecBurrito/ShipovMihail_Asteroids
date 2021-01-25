@@ -8,11 +8,9 @@ namespace Shipov_Asteroids
 
         private void OnTriggerEnter2D(Collider2D other)
         {
-            Debug.Log("Bre");
-            if (other.CompareTag("Enemy"))
+            if (other.TryGetComponent<BaseEnemy>(out var enemy))
             {
-                Debug.Log("Lol");
-                other.GetComponent<BaseEnemy>().Health.GetDamage(DAMAGE);
+                enemy.Health.GetDamage(DAMAGE);
                 Destroy(gameObject);
             }
         }

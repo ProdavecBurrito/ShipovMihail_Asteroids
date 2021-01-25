@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace Shipov_Asteroids
 {
@@ -14,7 +13,7 @@ namespace Shipov_Asteroids
         [SerializeField] private Transform _barrel;
         private Ship _ship;
 
-       // private ScoreInterpretator _scoreInterpretator;
+        private DamageListener _damageListener;
         private IChainMember _chainMember;
         private UpdatingObjects _updatingObjects;
         private InputController _inputController;
@@ -26,7 +25,7 @@ namespace Shipov_Asteroids
 
         private void Start()
         {
-            //_scoreInterpretator = new ScoreInterpretator();
+            _damageListener = new DamageListener();
             _chainMembers = new List<IChainMember>();
 
             EnemyPool enemyPool = new EnemyPool(5);
@@ -36,7 +35,7 @@ namespace Shipov_Asteroids
 
             if(enemy is Asteroid asteroid)
             {
-                asteroid.InitAsteroid();
+                asteroid.InitAsteroid(enemyPool);
             }
 
             _scoreCanvas = Instantiate(_scoreCanvas);
@@ -57,6 +56,7 @@ namespace Shipov_Asteroids
             _chainMember = new BustSpeedChain(_ship);
             _chainMembers.Add(_chainMember);
             _chainMembers.Add(new ReduceSpeedChain(_ship));
+            _damageListener.Add(enemy);
 
             _chainMembers[0].Act();
             for (var i = 1; i < _chainMembers.Count; i++)
