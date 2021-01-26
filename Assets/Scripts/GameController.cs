@@ -21,12 +21,14 @@ namespace Shipov_Asteroids
 
         private void Start()
         {
-            EnemyPool enemyPool = new EnemyPool(5);
+            ServiceLocator.AddService(new EnemyPool(5));
+            var enemyPool = ServiceLocator.GetPull<EnemyPool>();
+
             var enemy = enemyPool.GetEnemy("Asteroid");
             enemy.transform.position = Vector3.one;
             enemy.gameObject.SetActive(true);
 
-            if(enemy is Asteroid asteroid)
+            if (enemy is Asteroid asteroid)
             {
                 asteroid.InitAsteroid();
             }
