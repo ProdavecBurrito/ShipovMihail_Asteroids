@@ -2,7 +2,7 @@
 
 namespace Shipov_Asteroids
 {
-    internal class BaseShoot : IShoot
+    internal class BaseShoot : MonoBehaviour, IShoot
     {
         private readonly Rigidbody2D _bullet;
         private readonly Transform _barrel;

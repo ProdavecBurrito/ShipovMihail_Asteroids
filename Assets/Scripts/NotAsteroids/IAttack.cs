@@ -1,4 +1,5 @@
-﻿namespace Shipov_NotAsteroidHW
+﻿
+namespace Shipov_NotAsteroidHW
 {
     public interface IAttack
     {
